@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='root'>Loading ...</div>
+<script src="loader.js"></script>
+<script>
+    window.addEventListener(
+        'load',
+        () => new pageLoader(document.getElementById('root'))
+    )
+</script>
+</body>
+</html>

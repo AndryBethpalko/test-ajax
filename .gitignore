@@ -1,0 +1,6 @@
+
+.DS_Store
+design/.DS_Store
+
+# PhpStorm environment files
+.idea/
