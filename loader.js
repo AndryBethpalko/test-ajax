@@ -45,7 +45,6 @@ class pageLoader {
             this.htmlContainer,
             {
                 className: 'article-envelope',
-                // TODO: escape title
                 innerHTML: `
                   <div class="article">
                     <p class="category">${escapeHtml(item.primarySectionRouteName)}</p>                  
@@ -53,7 +52,7 @@ class pageLoader {
                     <p class="standfirst">${escapeHtml(item.standfirst)}</p>                                      
                   </div>
                   <img height="${item.thumbnail.height}" width="${item.thumbnail.height}" 
-                  src="${item.thumbnail.src}" title="${item.thumbnail.title}">
+                  src="${item.thumbnail.src}" title="${item.thumbnail.title.replace(/\\/g,"\\\\").replace(/"/g,"\"")}">
                 `
             }
         )
