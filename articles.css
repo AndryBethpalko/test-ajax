@@ -43,3 +43,21 @@ body {
 .standfirst {
   font-size: 16px;
 }
+
+.floating-button {
+  box-shadow: 1px 1px 2px black;
+  display: initial;
+  padding: 2px 7px;
+  transition: 0.3s;
+  margin: 5px;
+}
+
+.floating-button:hover {
+  box-shadow: 3px 3px 4px black;
+  transform: translateY(-4px);
+}
+
+.floating-button:active {
+  box-shadow: 1px 1px 3px black;
+  transform: translateY(-1px);
+}

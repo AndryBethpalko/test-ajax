@@ -3,7 +3,15 @@ class pageLoader {
         this._pageLoaderData = {
             htmlContainer: htmlContainer
         };
-        htmlContainer.innerText = 'Loading ...';
+        this.reload();
+    }
+
+    get htmlContainer() {
+        return this._pageLoaderData.htmlContainer;
+    }
+
+    reload() {
+        this.htmlContainer.innerText = 'Loading ...';
 
         let oReq = new XMLHttpRequest();
         let self = this;
@@ -13,17 +21,36 @@ class pageLoader {
                 self.loadData(this)
             }
         );
+        oReq.addEventListener(
+            "error",
+            function () {
+                self.onLoadError(this)
+            }
+        );
         oReq.open("GET", "json/code-test.json");
         oReq.send();
     }
 
-    get htmlContainer() {
-        return this._pageLoaderData.htmlContainer;
+    onLoadError() {
+        this.htmlContainer.innerHTML = '<p>Load error</p>';
+        createHtmlElem(
+            'div',
+            this.htmlContainer,
+            {
+                onclick: this.reload.bind(this),
+                innerHTML: 'Press to reload',
+                className: 'floating-button'
+            }
+        )
     }
 
     loadData(response) {
-        let dataSet = JSON.parse(response.responseText);
-        dataSet.articles && dataSet.articles.length ? this.showArticles(dataSet.articles) : this.showListIsEmpty();
+        if (response.status === 200) {
+            let dataSet = JSON.parse(response.responseText);
+            dataSet.articles && dataSet.articles.length ? this.showArticles(dataSet.articles) : this.showListIsEmpty();
+        } else {
+            this.onLoadError();
+        }
     }
 
     showArticles(articles) {
