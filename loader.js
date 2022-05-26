@@ -22,6 +22,40 @@ class pageLoader {
     }
 
     loadData(response) {
-        this.htmlContainer.innerText = response.responseText;
+        let dataSet = JSON.parse(response.responseText);
+        dataSet.articles && dataSet.articles.length ? this.showArticles(dataSet.articles) : this.showListIsEmpty();
+    }
+
+    showArticles(articles) {
+        this.htmlContainer.innerHTML = '';
+        articles.forEach(
+            function (item) {
+                this.createArticleItem(item)
+            }.bind(this)
+        )
+    }
+
+    showListIsEmpty() {
+        this.htmlContainer.innerText = 'List is empty';
+    }
+
+    createArticleItem(item) {
+        createHtmlElem(
+            'div',
+            this.htmlContainer,
+            {
+                className: 'article-envelope',
+                // TODO: escape title and HTML
+                innerHTML: `
+                  <div class="article">
+                    <p class="category">${item.primarySectionRouteName}</p>                  
+                    <a class="headline" href="${item.link}">${item.headline}</a>
+                    <p class="article">${item.standfirst}</p>                                      
+                  </div>
+                  <img height="${item.thumbnail.height}" width="${item.thumbnail.height}" 
+                  src="${item.thumbnail.src}" title="${item.thumbnail.title}">
+                `
+            }
+        )
     }
 }

@@ -1,0 +1,36 @@
+body {
+  background-color: #978c8c;
+  justify-content: center;
+  display: flex;
+}
+
+#root {
+  width: 70%;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+}
+
+.article-envelope {
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid gray;
+}
+
+.article {
+  width: 90%;
+  display: block;
+}
+
+.category {
+  color: #1466c5;
+}
+
+.headline {
+  color: black;
+  font-weight: bold;
+  font-size: large;
+  cursor: pointer;
+  text-decoration: none;
+}
