@@ -50,7 +50,7 @@ class pageLoader {
                   <div class="article">
                     <p class="category">${escapeHtml(item.primarySectionRouteName)}</p>                  
                     <a class="headline" href="${item.link}">${escapeHtml(item.headline)}</a>
-                    <p class="article">${escapeHtml(item.standfirst)}</p>                                      
+                    <p class="standfirst">${escapeHtml(item.standfirst)}</p>                                      
                   </div>
                   <img height="${item.thumbnail.height}" width="${item.thumbnail.height}" 
                   src="${item.thumbnail.src}" title="${item.thumbnail.title}">
